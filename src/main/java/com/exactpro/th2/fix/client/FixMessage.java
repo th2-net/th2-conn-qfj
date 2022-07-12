@@ -26,7 +26,7 @@ public class FixMessage extends Message {
         this.fromString(strMessage, sessionDataDictionary, dataDictionary, true);
     }
 
-    public FixMessage(int[] fieldOrderBody, int[] fieldOrderHeader, int[] fieldOrderTrailer) {
+    public FixMessage(int[] fieldOrderHeader, int[] fieldOrderBody, int[] fieldOrderTrailer) {
         super(fieldOrderBody);
         super.header = this.header = new FixHeader(fieldOrderHeader);
         super.trailer = this.trailer = new FixTrailer(fieldOrderTrailer);

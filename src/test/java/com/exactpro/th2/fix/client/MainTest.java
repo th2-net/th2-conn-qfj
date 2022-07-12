@@ -184,7 +184,7 @@ public class MainTest extends Main {
         headerClient1.setField(new MsgType(MsgType.TRADE_CAPTURE_REPORT));
         headerClient1.setField(new SenderCompID("client"));
         headerClient1.setField(new TargetCompID("server"));
-        headerClient1.setString(ApplVerID.FIELD, "9");
+//        headerClient1.setString(ApplVerID.FIELD, "9");
 
 
         fixMessage1.setField(new TradeReportID("tradeID"));

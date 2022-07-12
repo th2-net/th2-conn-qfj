@@ -333,11 +333,17 @@ public class Main {
                         }
 
                         if (sessionSettings.getOrderingFields() != null && sessionSettings.getOrderingFields().equals(YES_SETTING)) {
-                            fixMessage = messageFactory.create(MessageUtils.getMessageType(strMessage), dataDictionary.getOrderedFields());
+                            String msgType = MessageUtils.getMessageType(strMessage);
+
+                            fixMessage = messageFactory.create(msgType, dataDictionary.getMsgFieldOrder(DataDictionary.HEADER_ID),
+                                    dataDictionary.getMsgFieldOrder(msgType),
+                                    dataDictionary.getMsgFieldOrder(DataDictionary.TRAILER_ID));
+
                             fixMessage.fromString(strMessage, sessionDataDictionary, dataDictionary, true);
                         } else {
                             fixMessage = new FixMessage(strMessage, sessionDataDictionary, dataDictionary);
                         }
+                        dataDictionary.validate(fixMessage, true);
 
                         if (!message.getRawMessage().getParentEventId().getId().equals("")) {
                             fixMessage.setParentEventID(message.getRawMessage().getParentEventId());
